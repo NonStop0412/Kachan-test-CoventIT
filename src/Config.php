@@ -10,6 +10,10 @@ class Config
     private static $instance;
     private array $config;
 
+    /**
+     * Construct to include config
+     * @param array $config
+     */
     private function __construct(array $config)
     {
         $this->config = $config;

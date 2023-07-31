@@ -13,6 +13,9 @@ class MysqlDatabase implements DatabaseInterface
     private ?PDO $connection = null;
     private static ?MysqlDatabase $instance = null;
 
+    /**
+     * Construct for set up connection to db
+     */
     private function __construct()
     {
         $this->connection = new PDO(

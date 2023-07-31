@@ -12,6 +12,7 @@ class User
     private DatabaseInterface $db;
 
     /**
+     * Construct for connection to db
      * @param DatabaseInterface $db
      */
     public function __construct(DatabaseInterface $db)
