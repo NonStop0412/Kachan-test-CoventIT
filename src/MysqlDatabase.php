@@ -5,7 +5,9 @@ namespace app;
 use PDO;
 use RuntimeException;
 
-// Class for working with MySql database
+/**
+ * Class for working with MySql database
+ */
 class MysqlDatabase implements DatabaseInterface
 {
     private ?PDO $connection = null;
@@ -21,7 +23,9 @@ class MysqlDatabase implements DatabaseInterface
         );
     }
 
-    // Getting an existing instance instead of creating a new one
+    /**
+     * Getting an existing instance instead of creating a new one
+     */
     public static function getInst(): MysqlDatabase
     {
         if (self::$instance) {
@@ -31,7 +35,9 @@ class MysqlDatabase implements DatabaseInterface
         return self::$instance = new self();
     }
 
-    // Selection method for selection requests
+    /**
+     * Selection method for selection requests
+     */
     public function select(string $query, array $values): array
     {
         $stm = $this->connection->prepare($query);
@@ -49,7 +55,9 @@ class MysqlDatabase implements DatabaseInterface
         return $data ?: [];
     }
 
-    // Selection method for select requests for one entity
+    /**
+     * Selection method for select requests for one entity
+     */
     public function selectOne(string $query, array $values): array|false
     {
         $data = $this->select($query, $values);
@@ -57,7 +65,9 @@ class MysqlDatabase implements DatabaseInterface
         return current($data);
     }
 
-    // Execute method for else requests
+    /**
+     * Execute method for else requests
+     */
     public function execute(string $query, array $values): bool
     {
         $statement = $this->connection->prepare($query);
@@ -71,7 +81,9 @@ class MysqlDatabase implements DatabaseInterface
         return $result;
     }
 
-    // Getting the last inserted id (for generation)
+    /**
+     * Getting the last inserted id (for generation)
+     */
     public function getLastInsertId(): false|string
     {
         return $this->connection->lastInsertId();

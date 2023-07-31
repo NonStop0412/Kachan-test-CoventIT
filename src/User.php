@@ -4,7 +4,9 @@ namespace app;
 
 use DateTime;
 
-// Class for working with users
+/**
+ * Class for working with users
+ */
 class User
 {
     private DatabaseInterface $db;
@@ -17,7 +19,9 @@ class User
         $this->db = $db;
     }
 
-    // Get one User by id
+    /**
+     * Get one User by id
+     */
     public function getById(int $id): array
     {
         $sql = "SELECT GROUP_CONCAT(users_phones.phone SEPARATOR ', ') as phones, users.id, users.birth, users.`name` 
@@ -35,7 +39,9 @@ class User
         return $usersData;
     }
 
-    // Get phone id by phone number for deposit
+    /**
+     * Get phone id by phone number for deposit
+     */
     private function getPhoneIdByPhoneNumber(string $phone): int|null
     {
         $sql = "SELECT id FROM users_phones WHERE phone = :phone";
@@ -45,7 +51,9 @@ class User
         return $phoneId['id'] ?? null;
     }
 
-    // Make a deposit for phone
+    /**
+     * Make a deposit for phone
+     */
     public function depositPhone(string $phone, float $amount, string $currency = 'UAH'): bool
     {
         $phoneId = $this->getPhoneIdByPhoneNumber($phone);
@@ -61,7 +69,9 @@ class User
         return $this->db->execute($sql, [':amount' => $amount, ':phone_id' => $phoneId, ':currency' => $currency]);
     }
 
-    // Creating a new User
+    /**
+     * Creating a new User
+     */
     public function create(string $name, DateTime $dateOfBirth,): bool
     {
         $sql = "INSERT INTO users (name, birth) VALUES (:name, :birth)";
@@ -69,7 +79,9 @@ class User
         return $this->db->execute($sql, [':name' => $name, ':birth' => $dateOfBirth->format('y-m-d')]);
     }
 
-    // Adding a phone for User
+    /**
+     * Adding a phone for User
+     */
     public function addPhone(int $userId, string $phone): bool
     {
         // Validation a phone number by supported operators and country code
@@ -84,7 +96,9 @@ class User
         return $this->db->execute($sql, [':user_id' => $userId, ':phone' => $phone]);
     }
 
-    // Deleting a User and all his data (numbers, transactions)
+    /**
+     * Deleting a User and all his data (numbers, transactions)
+     */
     public function delete(int $userId): bool
     {
         $sql = "DELETE users.*, users_phones.*, phone_transactions.* 
