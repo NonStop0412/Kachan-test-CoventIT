@@ -21,6 +21,8 @@ class User
 
     /**
      * Get one User by id
+     * @param int $id
+     * @return array
      */
     public function getById(int $id): array
     {
@@ -41,6 +43,8 @@ class User
 
     /**
      * Get phone id by phone number for deposit
+     * @param string $phone
+     * @return int|null
      */
     private function getPhoneIdByPhoneNumber(string $phone): int|null
     {
@@ -53,6 +57,10 @@ class User
 
     /**
      * Make a deposit for phone
+     * @param string $phone
+     * @param float $amount
+     * @param string $currency
+     * @return bool
      */
     public function depositPhone(string $phone, float $amount, string $currency = 'UAH'): bool
     {
@@ -71,6 +79,9 @@ class User
 
     /**
      * Creating a new User
+     * @param string $name
+     * @param DateTime $dateOfBirth
+     * @return bool
      */
     public function create(string $name, DateTime $dateOfBirth,): bool
     {
@@ -79,8 +90,14 @@ class User
         return $this->db->execute($sql, [':name' => $name, ':birth' => $dateOfBirth->format('y-m-d')]);
     }
 
+
+
+
     /**
      * Adding a phone for User
+     * @param int $userId
+     * @param string $phone
+     * @return bool
      */
     public function addPhone(int $userId, string $phone): bool
     {
@@ -98,6 +115,8 @@ class User
 
     /**
      * Deleting a User and all his data (numbers, transactions)
+     * @param int $userId
+     * @return bool
      */
     public function delete(int $userId): bool
     {

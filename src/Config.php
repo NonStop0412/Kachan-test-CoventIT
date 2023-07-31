@@ -17,6 +17,7 @@ class Config
 
     /**
      * Getting an existing instance instead of creating a new one
+     * @return self
      */
     public static function getInst(): self
     {
@@ -29,6 +30,7 @@ class Config
 
     /**
      * Getting host from config.php
+     * @return string
      */
     public function getHost(): string
     {
@@ -37,6 +39,7 @@ class Config
 
     /**
      * Getting dbname from config.php
+     * @return string
      */
     public function getDbName(): string
     {
@@ -45,6 +48,7 @@ class Config
 
     /**
      * Getting db_username from config.php
+     * @return string
      */
     public function getUser(): string
     {
@@ -53,6 +57,7 @@ class Config
 
     /**
      * Getting db_password from config.php
+     * @return string
      */
     public function getPassword(): string
     {

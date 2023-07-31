@@ -25,6 +25,7 @@ class MysqlDatabase implements DatabaseInterface
 
     /**
      * Getting an existing instance instead of creating a new one
+     * @return MysqlDatabase
      */
     public static function getInst(): MysqlDatabase
     {
@@ -37,6 +38,9 @@ class MysqlDatabase implements DatabaseInterface
 
     /**
      * Selection method for selection requests
+     * @param string $query
+     * @param array $values
+     * @return array
      */
     public function select(string $query, array $values): array
     {
@@ -57,6 +61,9 @@ class MysqlDatabase implements DatabaseInterface
 
     /**
      * Selection method for select requests for one entity
+     * @param string $query
+     * @param array $values
+     * @return array|false
      */
     public function selectOne(string $query, array $values): array|false
     {
@@ -67,6 +74,9 @@ class MysqlDatabase implements DatabaseInterface
 
     /**
      * Execute method for else requests
+     * @param string $query
+     * @param array $values
+     * @return bool
      */
     public function execute(string $query, array $values): bool
     {
@@ -83,6 +93,7 @@ class MysqlDatabase implements DatabaseInterface
 
     /**
      * Getting the last inserted id (for generation)
+     * @return false|string
      */
     public function getLastInsertId(): false|string
     {
