@@ -1,3 +1,4 @@
 config.php
+!src/Config.php
 .idea
 vendor
