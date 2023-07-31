@@ -1,0 +1,17 @@
+{
+    "name": "kachan/test",
+    "autoload": {
+        "psr-4": {
+            "app\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Artem Kachan"
+        }
+    ],
+    "require": {
+        "ext-pdo": "*",
+        "fakerphp/faker": "^1.23"
+    }
+}
